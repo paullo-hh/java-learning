@@ -81,10 +81,18 @@ public class MathOperations {
         num2 = scanner.nextBigInteger().toString();
 
         if (!num1.isEmpty() || !num2.isEmpty()) {
-            int number1 = Integer.parseInt(num1);
-            int number2 = Integer.parseInt(num2);
+            try {
+                int number1 = Integer.parseInt(num1);
+                int number2 = Integer.parseInt(num2);
 
-            System.out.println("O resultado da divisão é: " + (number1 / number2));
+                if (number1 != 0 || number2 != 0) {
+                    System.out.println("O resultado da divisão é: " + (number1 / number2));
+                } else {
+                    System.out.println("Divisor não pode ser zero.");
+                }
+            } catch (ArithmeticException e) {
+                System.out.println("Erro ao tentar realizar a divisão de " + num1 + " por " + num2 + ". Detalhes: " + e.getMessage());
+            }
         } else {
             System.out.println("Número inválido!");
             scanner.next(); // Limpa a entrada incorreta
